@@ -1,0 +1,75 @@
+.yandex-search-btn {
+    padding: 14px 30px;
+    /* Un poco más de aire horizontal */
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #ffdb4d;
+    border: none;
+    cursor: pointer;
+    position: relative;
+
+    /* Dibujamos un polígono de 5 puntos en coordenadas %
+        Punto 1: Top-izq (0% 0%)
+        Punto 2: Top-der recortado antes del final (85% 0%)
+        Punto 3: La punta del triángulo al centro a la derecha (100% 50%)
+        Punto 4: Bottom-der recortado antes del final (85% 100%)
+        Punto 5: Bottom-izq (0% 100%) */
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+
+    /* Pequeño margen izquierdo negativo para encajar perfectamente con el borde del input */
+    margin-left: -2px;
+    transition: background-color 0.2s ease;
+}
+
+.yandex-search-btn:hover {
+    background-color: #ffd214;
+}
+
+.virtual-keyboard-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+/* MASONRY */
+.widgets-grid {
+    /* En lugar de Grid por filas, usamos columnas fluidas estilo periódico */
+    column-count: 3;
+    /* Queremos exactamente 3 columnas verticales */
+    column-gap: 10px;
+    /* Separación horizontal entre columnas */
+    width: 100%;
+    margin-top: 0px;
+}
+
+/* Evitamos que un widget se rompa o se mutile a la mitad entre dos columnas */
+.widgets-grid .widget-card {
+    break-inside: avoid;
+    /* Forza al navegador a renderizar el bloque entero en una sola columna */
+    margin-bottom: 0px;
+    /* Separación vertical entre widgets de la misma columna */
+    background-color: #fff;
+}
+
+/* Адаптивность (Responsive): Si la pantalla es compacta (Tablet), bajamos a 2 columnas */
+@media (max-width: 768px) {
+    .widgets-grid {
+        column-count: 2;
+    }
+}
+
+/* Если экран мобильный, все виджеты встают в одну вертикальную линию */
+@media (max-width: 480px) {
+    .widgets-grid {
+        column-count: 1;
+    }
+}
